@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Matrix AI Coder</title>
+  <style>
+    * {
+      margin: 0; padding: 0; box-sizing: border-box;
+      font-family: 'Courier New', monospace;
+    }
+    body {
+      background: black;
+      color: #00ff00;
+      overflow: hidden;
+    }
+    canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: -1;
+    }
+    .container {
+      width: 100%;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      padding: 20px;
+      text-align: center;
+    }
+    h1 {
+      font-size: 32px;
+      color: #00ff00;
+    }
+    h2 {
+      color: #00ff99;
+    }
+    textarea {
+      width: 70%;
+      height: 100px;
+      background: black;
+      border: 2px solid #00ff00;
+      color: #00ff00;
+      padding: 10px;
+      font-size: 16px;
+      border-radius: 10px;
+    }
+    button {
+      width: 70%;
+      padding: 15px;
+      background: transparent;
+      color: #00ff00;
+      border: 2px solid #00ff00;
+      font-weight: bold;
+      font-size: 16px;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    button:hover {
+      background: #00ff00;
+      color: black;
+    }
+    pre {
+      width: 80%;
+      background: #001100;
+      padding: 10px;
+      border: 1px solid #00ff00;
+      border-radius: 10px;
+      color: #00ff00;
+      overflow-x: auto;
+    }
+    a {
+      color: #00ff99;
+      text-decoration: underline;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+<canvas id="matrix"></canvas>
+<div class="container">
+  <h1>AI Helper</h1>
+  <textarea id="prompt" placeholder="Enter your coding idea..."></textarea>
+  <button onclick="alert('this is just the front of the web')">Send</button>
+  
+  
+  <h2>Made with Abdughafur Projects</h2>
+
+</div>
+
+<script>
+
+</script>
+
+<script>
+// MATRIX BACKGROUND
+const canvas = document.getElementById('matrix');
+const ctx = canvas.getContext('2d');
+canvas.height = window.innerHeight;
+canvas.width = window.innerWidth;
+let letters = "01";
+letters = letters.split("");
+let fontSize = 14;
+let columns = canvas.width / fontSize;
+let drops = [];
+for (let x = 0; x < columns; x++) drops[x] = 1;
+function draw() {
+  ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  ctx.fillStyle = "#0f0";
+  ctx.font = fontSize + "px monospace";
+  for (let i = 0; i < drops.length; i++) {
+    let text = letters[Math.floor(Math.random() * letters.length)];
+    ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+    if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) drops[i] = 0;
+    drops[i]++;
+  }
+}
+setInterval(draw, 33);
+</script>
+</body>
+</html>
